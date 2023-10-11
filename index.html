@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="background-color: grey; color: wheat">
+    <h2>There will be changed so many color</h2>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+  </body>
+  <script>
+    const randomColor = function () {
+      const hex = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += hex[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    };
+
+    let intervar;
+    const startChangeColor = function () {
+
+        if (!intervar) {
+            intervar = setInterval(changeBgColor, 1000);       
+        }
+     
+
+      function changeBgColor() {
+        document.body.style.backgroundColor = randomColor();
+      }
+    };
+
+    const stopChangeColor = function () {
+        clearInterval(intervar);
+        intervar = null;
+
+    };
+
+    document.querySelector("#start").addEventListener("click", startChangeColor);
+    document.querySelector("#stop").addEventListener("click", stopChangeColor);
+  </script>
+</html>
